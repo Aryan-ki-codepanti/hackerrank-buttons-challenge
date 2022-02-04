@@ -4,9 +4,7 @@ const arr = [
     [7, 8, 9]
 ];
 
-const printArr = arr => {
-    for (let a of arr) console.log(a.toString());
-};
+const btn5 = document.getElementById("btn5");
 
 const shift = a => {
     let carryTop, carryRight, carryBottom;
@@ -31,11 +29,20 @@ const shift = a => {
     a[1][0] = carryBottom;
 };
 
-printArr(arr);
-console.log();
-shift(arr);
-printArr(arr);
-console.log();
-shift(arr);
-printArr(arr);
-console.log();
+const matrixToGrid = () => {
+    let a = [];
+    for (let v of arr) {
+        for (let i of v) a.push(i);
+    }
+    let element;
+    for (let i = 0; i < a.length; i++) {
+        element = document.getElementById("btn" + (i + 1));
+        element.innerHTML = a[i];
+    }
+};
+
+matrixToGrid();
+btn5.addEventListener("click", e => {
+    shift(arr);
+    matrixToGrid();
+});
